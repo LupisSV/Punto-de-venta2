@@ -1,0 +1,94 @@
+<% include partials/_header %>
+
+<div class="container">
+    <section id="Nosotros">
+      <div class="container ">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <div  >
+                <h2 align="left" > ¿Quiénes somos?</h2>
+              </div>
+            <p><strong>Cápara Sonia</strong> es una pequeña empresa que se dedica a consentir a tu mascota a través de productos de calidad que aportan gran felicidad para ellos, además, a diferencia de otros productos en el meracado <strong><i>Cápara Sonia</i></strong> son productos de calidad a bajo costo.</p>
+            <p>Te invitamos a que conozcas nuestros productos y si tienes alguna duda nos consultes a través del formulario.</p>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="vertical-align: center;">
+            <br><br>
+             <img id="" src="img/nosotros.jpg" width="100%" height="responsive" class="padding">
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+
+
+<div class="container">
+
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <form action="/add" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" name="nombre" placeholder="Nombre del producto">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="number" step="any" name="precio" placeholder="Precio del producto">
+            </div>
+
+            <div class="form-group">
+              <textarea class="form-control" name="descripcion" cols="80"
+                placeholder="Descripción del producto"
+                ></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">
+              Agregar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Num.</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < tasks.length; i++) { %>
+            <tr>
+              <td><%= i + 1%></td>
+              <td><strong><%= tasks[i].nombre %></strong></td>
+              <td><strong><%= tasks[i].precio %></strong></td>
+              <td><%= tasks[i].descripcion %></td>
+              <td>
+                <a
+                  class="<%= tasks[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                  href="/turn/<%= tasks[i]._id %>">Leer</a>
+                <a href="/delete/<%= tasks[i]._id %>"
+                  class="btn btn-danger">
+                  Borrar
+                </a>
+                <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">
+                  Editar
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
+
+<% include partials/_footer%>
